@@ -49,6 +49,8 @@ public class ThreadStack extends ValueObjectBase {
 
 At this point, equals(), hashcode(), toString(), and clone() all work.
 
+**Note: ValueObjectBase requires a null constructor**
+
 ### Named parameter constructors
 
 While it's not possible for ValueObjectBase to provide named parameters to abbreviate constructor code, it can provide most of the benefit with it's init() method.  Here's a sample:
