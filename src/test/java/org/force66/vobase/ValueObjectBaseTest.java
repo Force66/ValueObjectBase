@@ -100,6 +100,7 @@ public class ValueObjectBaseTest {
 	public void testClone() throws Exception {
 		TestVO clone = (TestVO) populatedVO.clone();
 		Assert.assertEquals(populatedVO, clone);
+		Assert.assertEquals(populatedVO.hashCode(), clone.hashCode());
 	}
 
 	public static class TestVO extends ValueObjectBase {
