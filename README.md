@@ -24,7 +24,20 @@ Scala also provides the convenience of named parameters, which get Scala program
 constructors with various combinations of parameters. While it's not possible to override Java language 
 restrictions and provide named parameters for constructors, we can come relatively close. 
 
-## Usage
+System Requirements
+==================
+* Java JDK 7.0 or above.  
+* Apache Commons Lang version 3.0 or above  
+
+Installation Instructions
+==================
+BeanTester is easy to install whether you use maven or not.
+
+### Maven Users  
+Maven users can find dependency information [here](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.force66%22%20AND%20a%3A%22ValueObjectBase%22).
+
+Usage
+==================
 
 To start using ValueObjectBase, just extend ValueObjectBase like the example below.
 
