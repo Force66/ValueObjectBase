@@ -31,7 +31,7 @@ System Requirements
 
 Installation Instructions
 ==================
-BeanTester is easy to install whether you use maven or not.
+ValueObjectBase is easy to install whether you use maven or not.
 
 ### Maven Users  
 Maven users can find dependency information [here](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.force66%22%20AND%20a%3A%22ValueObjectBase%22).
