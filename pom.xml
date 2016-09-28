@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.force66</groupId>
-	<artifactId>value-object-base</artifactId>
+	<artifactId>ValueObjectBase</artifactId>
 	<version>1.0.0-rc1</version>
 	<name>ValueObjectBase</name>
 	<description>Provides Value Object base that eliminates much of the verbose coding that goes into value object class definitions.</description>
