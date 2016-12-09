@@ -14,6 +14,7 @@
 package org.force66.vobase;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.Validate;
@@ -28,22 +29,29 @@ class ValueObjectUtils {
 		
 		Object value = null;
 		for (Field field : FieldUtils.getAllFields(source.getClass())) {
-			try {
-				value = FieldUtils.readField(source, field.getName(), true);
-			} catch (Exception e) {
-				throw new ValueObjectException("Problem reading value object field value", e)
-						.addContextValue("fieldName", field.getName())
-						.addContextValue("className", source.getClass().getName());
-			}
-
-			try {
-				FieldUtils.writeField(target, field.getName(), value, true);
-			} catch (Exception e) {
-				throw new ValueObjectException("Problem setting value object field value", e)
-						.addContextValue("fieldName", field.getName())
-						.addContextValue("className", target.getClass().getName());
+			if ( !Modifier.isFinal(field.getModifiers())) {
+				value = copyField(source, target, value, field);
 			}
 		}
+	}
+
+	private static Object copyField(Object source, Object target, Object value, Field field) {
+		try {
+			value = FieldUtils.readField(source, field.getName(), true);
+		} catch (Exception e) {
+			throw new ValueObjectException("Problem reading value object field value", e)
+					.addContextValue("fieldName", field.getName())
+					.addContextValue("className", source.getClass().getName());
+		}
+
+		try {
+			FieldUtils.writeField(target, field.getName(), value, true);
+		} catch (Exception e) {
+			throw new ValueObjectException("Problem setting value object field value", e)
+					.addContextValue("fieldName", field.getName())
+					.addContextValue("className", target.getClass().getName());
+		}
+		return value;
 	}
 
 }

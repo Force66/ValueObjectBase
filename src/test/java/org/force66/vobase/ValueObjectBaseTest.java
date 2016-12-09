@@ -14,6 +14,7 @@
 package org.force66.vobase;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -37,9 +38,11 @@ public class ValueObjectBaseTest {
 		populatedVO = new TestVO();
 
 		for (Field field : TestVO.class.getDeclaredFields()) {
-			ValueGenerator valueGen = valueFactory.forClass(field.getType());
-			if (valueGen != null) {
-				FieldUtils.writeField(field, populatedVO, valueGen.makeValues()[0], true);
+			if ( !Modifier.isFinal(field.getModifiers())) {
+				ValueGenerator valueGen = valueFactory.forClass(field.getType());
+				if (valueGen != null) {
+					FieldUtils.writeField(field, populatedVO, valueGen.makeValues()[0], true);
+				}
 			}
 		}
 	}
@@ -104,6 +107,8 @@ public class ValueObjectBaseTest {
 	}
 
 	public static class TestVO extends ValueObjectBase {
+		
+		public static final String STATIC_FIELD="foo";
 
 		public byte testPublicPrimitiveByte;
 		public short testPublicPrimitiveShort;
